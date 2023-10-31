@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recruitment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h2{
+            width: 100%;
+            background-color: black;
+            color: #fff;
+            height: 75px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 17px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group select {
+            height: 40px;
+            width: 95% !important;
+        }
+
+        .form-group button {
+            background: #000;
+            color: #fff;
+            border: none;
+            width: 95%;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>E-Cell Recruitment Form</h2>
+    <div class="container">
+        <form id="recruitmentForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <span id="nameError" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <span id="emailError" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required>
+                <span id="phoneError" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="courses">Courses</label>
+                <select id="department" name="department" required>
+                    <option value="BTech">BTech</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BBA">BBA</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Branch">Branch</label>
+                <select id="Branch" name="Branch" required>
+
+                <option value="CSE">CSE</option>
+                    <option value="CSE-AI">CSE-AI</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EE">EE</option>
+                    <option value="ME">ME</option>
+                    <option value="CE">CE</option>
+                    <option value="BBA">BBA CORE</option>
+                    <option value="IB">IB</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="Year">Year</label>
+                <select id="Year" name="Year" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+             
+                
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Reset error messages
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('phoneError').textContent = '';
+            document.getElementById('branchError').textContent = '';
+            document.getElementById('yearError').textContent = '';
+
+            // Validation logic (you can add more checks)
+            const name = document.getElementById('name').value;
+            if (name.length < 2) {
+                document.getElementById('nameError').textContent = 'Name is too short.';
+                return false;
+            }
+
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent = 'Invalid email address.';
+                return false;
+            }
+
+            const phone = document.getElementById('phone').value;
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phone)) {
+                document.getElementById('phoneError').textContent = 'Invalid phone number (10 digits required).';
+                return false;
+            }
+
+            const branch = document.getElementById('branch').value;
+            if (branch.length < 2) {
+                document.getElementById('branchError').textContent = 'Branch name is too short.';
+                return false;
+            }
+
+            const year = document.getElementById('year').value;
+            if (isNaN(year) || year < 1 || year > 6){
+                document.getElementById('yearError').textContent='Invalid year.';
+                return false;
+            }
+            return true;
+        }
+        </script>
+        </body>
+</html>
